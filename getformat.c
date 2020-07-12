@@ -99,7 +99,6 @@ static int	getwidth(const char *p1, const char *p2, va_list *lst)
 **First element of array contain info about flags.
 **Second element of array contain width.
 **Third element of array contain precision.
-**Fourth element of array contain info about modifiers.
 */
 
 int			*getformat(const char *p1, const char *p2, va_list *list)

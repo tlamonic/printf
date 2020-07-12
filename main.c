@@ -2,7 +2,7 @@
 #include <stdio.h>
 int main()
 {
-	char c = '@';
-	ft_printf("%c\n", c);
+	char *s = "Hello World!";
+	ft_printf("%#5s", s);
 	return 0;
 }
