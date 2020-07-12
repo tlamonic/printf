@@ -38,39 +38,6 @@ static int	getflags(const char *p1, const char *p2)
 	return (bits);
 }
 
-/*
-**This function return number with information about flags.
-**
-**Return value has info about flags in next order:
-**_______________
-**|4	|3|2|1	|	<- bit
-**|ll	|l|h|hh	|	<-flag
-**---------------
-*/
-
-static int	getmodifiers(const char *p1, const char *p2)
-{
-	int		bits;
-
-	bits = 0;
-	while (++p1 < p2)
-	{
-		if (ft_isalpha(*p1))
-		{
-			if ((*p1 == 'h' || *p1 == 'l') && p1 + 1 <= p2 && *(p1 + 1) == *p1)
-			{
-				bits |= (*p1 == 'h') ? 1 : 8;
-				p1++;
-			}
-			else if (*p1 == 'h' || *p1 == 'l')
-				bits |= (*p1 == 'h') ? 2 : 4;
-			else
-				return (0);
-		}
-	}
-	return (bits);
-}
-
 static int	getprecision(const char *p1, const char *p2, va_list *lst)
 {
 	int			prec;
@@ -141,12 +108,11 @@ int			*getformat(const char *p1, const char *p2, va_list *list)
 
 	if (!p1 && !p2)
 		return (NULL);
-	res = ft_calloc(4, sizeof(int));
+	res = ft_calloc(3, sizeof(int));
 	if (!res)
 		return (NULL);
 	res[0] = getflags(p1, p2);
 	res[1] = getwidth(p1, p2, list);
 	res[2] = getprecision(p1, p2, list);
-	res[3] = getmodifiers(p1, p2);
 	return (res);
 }
