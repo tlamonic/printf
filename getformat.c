@@ -1,117 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getformat.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/15 12:29:30 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 15:23:53 by tlamonic         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-/*
-**This function return number with information about flags.
-**
-**Return value has info about flags in next order:
-**___________
-**|5|4|3|2|1|	<- bit
-**|-|+| |#|0|	<-flag
-**-----------
-*/
-
-static int	getflags(const char *p1, const char *p2)
+static int		getflags(const char *s1, const char *s2)
 {
-	int			bits;
+	int		bits;
 
 	bits = 0;
-	while (++p1 < p2)
+	while (++s1 < s2)
 	{
-		if (*p1 == '#')
+		if (*s1 == '-')
 			bits |= 2;
-		else if (*p1 == '-')
-		{
-			bits |= 16;
-			bits &= 30;
-		}
-		else if (*p1 == '0' && !(bits & 16) && !ft_isdigit(*(p1 - 1)) &&
-				!(*(p1 - 1) == '.' && !ft_isdigit(*(p1 + 1))))
+		else if (*s1 == '0' && !(bits & 16) && !ft_isdigit(*(s1 - 1)) &&
+				!(*(s1 - 1) == '.' && !ft_isdigit(*(s1 + 1))))
 			bits |= 1;
-		else if (*p1 == '+')
-		{
-			bits |= 8;
-			bits &= 27;
-		}
-		else if (*p1 == ' ' && !(bits & 8))
-			bits |= 4;
 	}
 	return (bits);
 }
 
-static int	getprecision(const char *p1, const char *p2, va_list *lst)
-{
-	int			prec;
-	const char	*tmp;
-
-	prec = -1;
-	while (p2 > p1)
-	{
-		tmp = p2;
-		while (ft_isdigit(*p2))
-			p2--;
-		if (*p2 == '.' && !ft_isdigit(*(p2 + 1)))
-			return (0);
-		if (*p2 == '.' && p2 != tmp)
-		{
-			prec = ft_str_to_nbr((char*)(p2 + 1), (char*)tmp, 1);
-			break ;
-		}
-		else if (*p2 == '*' && *(p2 - 1) == '.')
-		{
-			prec = va_arg(*lst, int);
-			break ;
-		}
-		p2--;
-	}
-	return (prec);
-}
-
-static int	getwidth(const char *p1, const char *p2, va_list *lst)
+static int		getwidth(const char *s1, const char *s2, va_list *vlist)
 {
 	int			width;
 	const char	*tmp;
 
 	width = 0;
-	while (p2 > p1)
+	while (s2 > s1)
 	{
-		tmp = p2;
-		while (ft_isdigit(*p2))
-			p2--;
-		if (*p2 == '*' && *(p2 - 1) != '.')
+		tmp = s2;
+		while (ft_isdigit(*s2))
+			s2--;
+		if (*s2 == '*' && *(s2 - 1) != '.')
 		{
-			width = va_arg(*lst, int);
+			width = va_arg(*vlist, int);
 			break ;
 		}
-		else if (*p2 != '.' && p2 != tmp)
+		else if (*s2 != '.' && s2 != tmp)
 		{
-			width = ft_str_to_nbr((char*)(p2 + 1), (char*)tmp, 1);
+			width = ft_to_nbr((char*)(s2 + 1), (char*)tmp);
 			break ;
 		}
-		p2--;
+		s2--;
 	}
 	return (width);
 }
 
-/*
-**This function return array with information about flags, width, precision,
-**modifiers.
-**
-**First element of array contain info about flags.
-**Second element of array contain width.
-**Third element of array contain precision.
-*/
-
-int			*getformat(const char *p1, const char *p2, va_list *list)
+static int		getprescision(const char *s1, const char *s2, va_list *vlist)
 {
-	int			*res;
+	int			pres;
+	const char	*tmp;
 
-	if (!p1 && !p2)
-		return (NULL);
+	pres = -1;
+	while (s2 > s1)
+	{
+		tmp = s2;
+		while (ft_isdigit(*s2))
+			s2--;
+		if (*s2 == '.' && !ft_isdigit(*(s2 + 1)))
+			return (0);
+		if (*s2 == '.' && s2 != tmp)
+		{
+			pres = ft_to_nbr((char*)(s2 + 1), (char*)tmp);
+			break ;
+		}
+		else if (*s2 == '*' && *(s2 - 1) == '.')
+		{
+			pres = va_arg(*vlist, int);
+			break ;
+		}
+		s2--;
+	}
+	return (pres);
+}
+
+int				*getformat(const char *s1, const char *s2, va_list *vlist)
+{
+	int		*res;
+
+	if (!s1 && !s2)
+		return (0);
 	res = ft_calloc(3, sizeof(int));
 	if (!res)
-		return (NULL);
-	res[0] = getflags(p1, p2);
-	res[1] = getwidth(p1, p2, list);
-	res[2] = getprecision(p1, p2, list);
+		return (0);
+	res[0] = getflags(s1, s2);
+	res[1] = getwidth(s1, s2, vlist);
+	res[2] = getprescision(s1, s2, vlist);
 	return (res);
 }

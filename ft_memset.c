@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printp.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:40:58 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 12:26:22 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:26:24 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printp(void *ptr, int *format)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*arr;
-	int		len;
+	unsigned char	*str;
+	size_t			i;
 
-	len = 0;
-	if (!format)
-		return (-1);
-	return (0);
+	if (!b)
+		return (0);
+	i = 0;
+	str = (unsigned char*)b;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }

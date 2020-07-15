@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/05 13:35:37 by fgavin            #+#    #+#             */
-/*   Updated: 2020/05/05 13:47:32 by fgavin           ###   ########.fr       */
+/*   Created: 2020/07/15 12:47:29 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:47:37 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
+
 int		ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
+	if (c > 47 && c < 58)
 		return (1);
-	return (0);
+	else
+		return (0);
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printp.c                                           :+:      :+:    :+:   */
+/*   ft_putuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:40:58 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 16:31:53 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 16:35:11 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printp(void *ptr, int *format)
+void	ft_putuns(unsigned int res)
 {
-	char	*arr;
-	int		len;
-
-	len = 0;
-	if (!format)
-		return (-1);
-	return (0);
+	if (res > 9)
+	{
+		ft_putuns(res / 10);
+		ft_putchar(res % 10 + '0');
+	}
+	else
+		ft_putchar(res + '0');
 }

@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   printchar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/16 15:09:53 by fgavin            #+#    #+#             */
-/*   Updated: 2020/07/12 20:21:50 by student          ###   ########.fr       */
+/*   Created: 2020/07/15 12:30:12 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:30:13 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printchar(int ch, int *format)
+int		printchar(int ch, int *format)
 {
-	char	c;
-	wchar_t ct;
+	char c;
 
-	c = (char)ch;
-	ct = (wchar_t)ch;
-	if (!format)
-		return (-1);
+	c = (char)c;
 	if (format[1] > 1 && !(format[0] & (1 << 4)))
 	{
 		while (--format[1] > 0)

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printp.c                                           :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:40:58 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 12:26:41 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:26:43 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printp(void *ptr, int *format)
+void	ft_putchar(char c)
 {
-	char	*arr;
-	int		len;
-
-	len = 0;
-	if (!format)
-		return (-1);
-	return (0);
+		write(1, &c, 1);
 }

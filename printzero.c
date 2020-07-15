@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printp.c                                           :+:      :+:    :+:   */
+/*   printzero.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:40:58 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 14:02:37 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 14:04:54 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printp(void *ptr, int *format)
+void	printzero(size_t count)
 {
-	char	*arr;
-	int		len;
-
-	len = 0;
-	if (!format)
-		return (-1);
-	return (0);
+	while (count-- != 0)
+		g_cout += write(1, "0", 1);
 }

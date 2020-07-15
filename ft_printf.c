@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/14 11:59:22 by fgavin            #+#    #+#             */
-/*   Updated: 2020/05/16 23:35:31 by fgavin           ###   ########.fr       */
+/*   Created: 2020/07/15 12:26:31 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 13:21:24 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_printf(const char *format, ...)
+int		ft_printf(char const *s, ...)
 {
-	va_list		vlist;
-	int			errflag;
+	va_list	argptr;
+	int		errflag;
 
-	errflag = 0;
-	g_cout = 0;
-	if (!format)
+	if (!s)
 		return (-1);
-	va_start(vlist, format);
-	errflag = parse_format_str(format, &vlist);
-	va_end(vlist);
+	g_cout = 0;
+	errflag = 0;
+	va_start(argptr, s);
+	errflag = parse_str(s, &argptr);
+	va_end(argptr);
 	if (errflag == -1)
 		return (-1);
 	return (g_cout);

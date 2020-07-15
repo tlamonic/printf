@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printp.c                                           :+:      :+:    :+:   */
+/*   getsize.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:40:58 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 12:29:42 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:29:43 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			printp(void *ptr, int *format)
+int		getsize(int n)
 {
-	char	*arr;
-	int		len;
+	int size;
 
-	len = 0;
-	if (!format)
-		return (-1);
-	return (0);
+	size = 0;
+	if (n < 0)
+	{
+		size++;
+		n *= -1;
+	}
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		size++;
+		n /= 10;
+	}
+	return (size);
 }

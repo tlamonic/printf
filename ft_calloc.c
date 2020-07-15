@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/05 16:48:30 by fgavin            #+#    #+#             */
-/*   Updated: 2020/05/05 21:26:22 by fgavin           ###   ########.fr       */
+/*   Created: 2020/07/15 12:26:10 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:26:13 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#	define MAX (size_t)~0
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void	*mem;
+	char	*arr;
 
-	mem = NULL;
-	mem = malloc(nmemb * size);
-	if (mem == NULL)
+	if ((size && MAX / size < count) || (count && MAX / count < size))
 		return (NULL);
-	ft_bzero(mem, nmemb * size);
-	return (mem);
+	arr = malloc(count * size);
+	if (!arr)
+		return (0);
+	ft_memset(arr, '\0', count * size);
+	return (arr);
 }

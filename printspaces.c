@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   printspaces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/17 19:11:36 by fgavin            #+#    #+#             */
-/*   Updated: 2020/05/18 20:18:55 by fgavin           ###   ########.fr       */
+/*   Created: 2020/07/15 12:30:45 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 12:30:46 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void		printspaces(char space, size_t count)
+void	printspaces(size_t count)
 {
 	while (count-- != 0)
-		g_cout += write(1, &space, 1);
+		g_cout += write(1, " ", 1);
 }

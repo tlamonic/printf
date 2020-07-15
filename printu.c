@@ -3,38 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   printu.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgavin <fgavin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/20 14:44:49 by fgavin            #+#    #+#             */
-/*   Updated: 2020/05/22 15:02:41 by fgavin           ###   ########.fr       */
+/*   Created: 2020/07/15 15:39:26 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 16:31:44 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-int				printu(va_list *va, int *format)
+#include <stdio.h>
+int			printu(unsigned int res, int *format)
 {
-	unsigned long	res;
-	char			*arrnbr;
-	int				addprec;
-	int				len;
+	int					size;
+	void				(*ptr)(size_t);
+	char				c;
 
 	if (!format)
 		return (-1);
-	res = setmunsodifier(va, format[3]);
-	arrnbr = ulltoabase(res, 10);
-	if (!arrnbr)
-		return (-1);
-	len = ft_strlen(arrnbr);
-	addprec = (len < format[2]) ? format[2] - len : 0;
-	format[0] &= 17;
-	setwidth(arrnbr, format, addprec, len);
-	printstart(arrnbr, format, len, 'u');
-	if (addprec != 0)
-		printspaces('0', addprec);
-	ft_putstr_fd(arrnbr, 1);
-	printend(format);
-	free(arrnbr);
-	arrnbr = NULL;
+	size = getsize(res);
+	if (size < format[2])
+	{
+		printzero(format[2] - size);
+		size = format[2];
+	}
+	ptr = format[0] & 1 ? printzero : printspaces;
+	if (!(format[0] & 1 << 2) && format[1] > size)
+		ptr(format[1] - size);
+	ft_putuns(res);
+	if (format[0] & 1 << 2 && format[1] > size)
+		ptr(format[1] - size);
 	return (0);
 }

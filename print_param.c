@@ -1,46 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_param.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/15 12:30:06 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 16:18:48 by tlamonic         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-static int		getandprintparam(const char *p2, va_list *vars, int *format)
+static int	getparam(const char *s2, va_list *vlist, int *format)
 {
-	int			errflag;
+	int		errflag;
 
 	errflag = 0;
-	if (*p2 == 'c')
-		errflag = printchar(va_arg(*vars, int), format);
-	else if (*p2 == 's')
-		errflag = prints(va_arg(*vars, int*), format);
-	else if (*p2 == 'p')
-		errflag = printp(va_arg(*vars, void*), format);
-	else if (*p2 == '%')
-		errflag = printpcnt(format);
-	else if (*p2 == 'd' || *p2 == 'i')
-		errflag = printdi(vars, format);
-	else if (*p2 == 'u')
-		errflag = printu(vars, format);
-	else if (*p2 == 'x' || *p2 == 'X')
-		errflag = printx(vars, format, *p2);
+	if (*s2 == 'c')
+		errflag = printchar(va_arg(*vlist, int), format);
+	else if (*s2 == 's')
+		errflag = prints(va_arg(*vlist, int*), format);
+	else if (*s2 == 'p')
+		errflag = printp(va_arg(*vlist, void*), format);
+	else if (*s2 == 'd' || *s2 == 'i')
+		errflag = printdi(va_arg(*vlist, int), format);
+	else if (*s2 == 'u')
+		errflag = printu(va_arg(*vlist, unsigned int), format);
+//	else if (*s2 == 'x' || *s2 == 'X')
+//		errflag = printx(vlist, format);
+//	else if (*s2 == '%')
+//		errflag = printpr(format);
 	return (errflag);
 }
 
-int				print_param(const char *p1, const char *p2, va_list *vars)
+int			print_param(const char *s1, const char *s2, va_list *vlist)
 {
-	int			*format;
-	int			errflag;
+	int		errflag;
+	int		*format;
 
+	if (!s1 && !s2)
+		return (-1);
+	if (!*s2)
+		return (-1);
 	errflag = 0;
-	if ((!p1 && !p2))
-		return (-1);
-	if (!*p2)
-		return (-1);
-	if (*p2 == '%' && *p1 == '%' && p2 - p1 == 1)
+	if (*s2 == '%' && *s1 == '%' && s2 - s1 == 1)
 		g_cout += write(1, "%", 1);
-	else if (*p1 == '%' && ft_strchr(CONV, *p2))
+	else if (*s1 == '%' && ft_strchr(CONV, *s2))
 	{
-		format = getformat(p1, p2, vars);
-		if (getandprintparam(p2, vars, format) == -1)
-			errflag = 1;
+		format = getformat(s1, s2, vlist);
+		if (getparam(s2, vlist, format) == -1)
+			errflag = -1;
 		free(format);
 		format = NULL;
 	}
-	return (!errflag ? 0 : -1);
+	return (errflag);
 }
