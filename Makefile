@@ -6,7 +6,7 @@
 #    By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/15 12:36:39 by tlamonic          #+#    #+#              #
-#    Updated: 2020/07/15 16:34:11 by tlamonic         ###   ########.fr        #
+#    Updated: 2020/07/15 17:04:04 by tlamonic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ NAME = libftprintf.a
 HEADER = libftprintf.h
 
 SRC_PRINTF = ft_printf.c getformat.c print_param.c printchar.c printdi.c\
-			 prints.c printp.c printu.c printspaces.c printzero.c parse_str.c
+			 prints.c printp.c printu.c printpr.c printspaces.c printzero.c\
+			 parse_str.c
 
 SRC_LIBFT = ft_calloc.c ft_memset.c ft_putchar.c ft_putnbr.c ft_strchr.c\
 			ft_strlen.c ft_isdigit.c getsize.c ft_to_nbr.c ft_putuns.c

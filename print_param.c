@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:30:06 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:18:48 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/15 17:00:16 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	getparam(const char *s2, va_list *vlist, int *format)
 		errflag = printu(va_arg(*vlist, unsigned int), format);
 //	else if (*s2 == 'x' || *s2 == 'X')
 //		errflag = printx(vlist, format);
-//	else if (*s2 == '%')
-//		errflag = printpr(format);
+	else if (*s2 == '%')
+		errflag = printpr(format);
 	return (errflag);
 }
 

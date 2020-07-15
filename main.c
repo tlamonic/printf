@@ -18,7 +18,7 @@ void	print(char *str, ...)
 
 int main()
 {
-	char c = 'a';
-	char *ptr = &c;
-	printf("%zu\n", sizeof(long long));
+//	char *ptr = &c;
+	ft_printf("%-10.5d%%\n", 123);
+	printf("%-10.5d", 123);
 }

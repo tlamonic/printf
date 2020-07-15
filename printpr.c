@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printchar.c                                        :+:      :+:    :+:   */
+/*   printpr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 12:30:12 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 17:30:17 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/15 17:00:25 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/15 17:05:39 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		printchar(int ch, int *format)
+int		printpr(int *format)
 {
-	char	c;
-
 	if (!format)
-		return (-1);
-	c = (char)ch;
-	if (format[1] > 1 && !(format[0] & (1 << 1)))
-		while(--format[1] > 0)
+		return (0);
+	if (format[1] > 1 && !(format[0] & (1 << 4)))
+		while (--format[1] > 0)
 			g_cout += write(1, " ", 1);
-	write(1, &c, 1);
-	if (format[1] > 1 && (format[0] & (1 << 1)))
+	write(1, "%", 1);
+	if (format[1] > 1 && (format[0] & (1 << 4)))
 		while (--format[1] > 0)
 			g_cout += write(1, " ", 1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:51 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 16:35:34 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/15 17:05:27 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int				printdi(int i, int *format);
 int				prints(int *st, int *format);
 int				printu(unsigned int u, int *format);
 int				printp(void *ptr, int *format);
+int				printpr(int *format);
 
 size_t			ft_strlen(const char *s);
 void			*ft_calloc(size_t count, size_t size);
