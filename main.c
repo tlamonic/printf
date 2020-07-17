@@ -6,19 +6,30 @@
 #include <unistd.h>
 #include <string.h>
 
-void	print(char *str, ...)
+void	print(unsigned long long a)
 {
-	va_list vlist;
-	unsigned int str1;
-	va_start(vlist, str);
-	str1 = va_arg(vlist, unsigned int);
-	printf("%u\n", str1);
-	va_end(vlist);
+	int i=0;
+	unsigned long long tmp = a;
+	while(a)
+	{
+		i++;
+		a/=16;
+	}
+	char *str = malloc(sizeof(char) * (i + 1));
+	str[i--] = '\0';
+	while (tmp)
+	{
+		str[i--] = getbasechar(tmp);
+		tmp/=16;
+	}
+	i++;
+	while (str[i])
+		printf("%c", str[i++]);
 }
-
 int main()
 {
-//	char *ptr = &c;
-	ft_printf("%-10.5d%%\n", 123);
-	printf("%-10.5d", 123);
+	int a = 21;
+	int *b = &a;
+	printf("%p\n0x", b);
+	print((unsigned long long)b);
 }
