@@ -2,27 +2,24 @@
 #include <stdio.h>
 char	*sixty(unsigned long long dig)
 {
-	unsigned long long	tmp;
 	char				*str;
-	int					size;
+	size_t				size;
+	size_t				tmp;
 
-	tmp = dig;
-	size = 0;
-	while (tmp)
-	{
-		size++;
-		tmp /= 16;
-	}
-	str = (char*)malloc(sizeof(char) * (size + 1));
+	tmp = 0;
+	size = sizeof(long long) * 8 + 1;
+	str = (char*)malloc(sizeof(char) * (size));
 	if (!str)
 		return (0);
-	size = 0;
-	while (dig)
+	while (tmp < size)
+		str[tmp++] = '\0';
+	tmp = 0;
+	while (dig >= 16)
 	{
-		printf("%c", getbasechar(dig));
-		//str[size++] = getbasechar(dig);
+		str[tmp++] = getbasechar(dig % 16);
 		dig /= 16;
 	}
-	str[size++] = '\0';
+	str[tmp] = getbasechar(dig);
+	reversstr(str, ft_strlen(str));
 	return (str);
 }

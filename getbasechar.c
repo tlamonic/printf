@@ -2,18 +2,10 @@
 
 char	getbasechar(int c)
 {
-	if (c % 16 == 10)
-		return ('a');
-	else if (c % 16 == 11)
-		return ('b');
-	else if (c % 16 == 12)
-		return ('c');
-	else if (c % 16 == 13)
-		return ('d');
-	else if (c % 16 == 14)
-		return ('e');
-	else if (c % 16 == 15)
-		return ('f');
+	if (c > 9 && c < 16)
+		return (c + 87);
+	else if (c >= 0 && c < 10)
+		return (c + '0');
 	else
-		return (c + 48);
+		return ('~');
 }

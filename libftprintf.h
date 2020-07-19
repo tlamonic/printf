@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:51 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/17 23:22:36 by student          ###   ########.fr       */
+/*   Updated: 2020/07/19 19:31:57 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 size_t 			g_cout;
 void			printspaces(size_t count);
 void			printzero(size_t count);
+void			reversstr(char *str, size_t size);
 char			*sixty(unsigned long long dig);
 char			getbasechar(int c);
 int				ft_printf(char const *s, ...);

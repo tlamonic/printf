@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:30 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 15:23:53 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/19 20:02:03 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		getflags(const char *s1, const char *s2)
 	{
 		if (*s1 == '-')
 			bits |= 2;
-		else if (*s1 == '0' && !(bits & 16) && !ft_isdigit(*(s1 - 1)) &&
+		else if (*s1 == '0' && !ft_isdigit(*(s1 - 1)) &&
 				!(*(s1 - 1) == '.' && !ft_isdigit(*(s1 + 1))))
 			bits |= 1;
 	}

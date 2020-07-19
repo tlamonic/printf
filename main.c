@@ -28,8 +28,8 @@ void	print(unsigned long long a)
 }
 int main()
 {
-	int a = 21;
+	int a = 212;
 	int *b = &a;
-	printf("%p\n0x", b);
-	print((unsigned long long)b);
+	printf("%-14p%%\n", b);
+	ft_printf("%-14p", b);
 }
