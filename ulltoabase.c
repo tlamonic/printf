@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printchar.c                                        :+:      :+:    :+:   */
+/*   ulltoabase.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 12:30:12 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/20 15:09:39 by tlamonic         ###   ########.fr       */
+/*   Created: 2020/07/20 15:08:21 by tlamonic          #+#    #+#             */
+/*   Updated: 2020/07/20 15:08:22 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		printchar(int ch, int *format)
+char	*ulltoabase(unsigned long long dig, int form)
 {
-	char	c;
+	char				*str;
+	size_t				size;
+	size_t				tmp;
 
-	if (!format)
-		return (-1);
-	c = (char)ch;
-	if (format[1] > 1 && !(format[0] & (1 << 1)))
-		while (--format[1] > 0)
-			g_cout += write(1, " ", 1);
-	g_cout += write(1, &c, 1);
-	if (format[1] > 1 && (format[0] & (1 << 1)))
-		while (--format[1] > 0)
-			g_cout += write(1, " ", 1);
-	return (0);
+	tmp = 0;
+	size = sizeof(long long) * 8 + 1;
+	str = (char*)malloc(sizeof(char) * (size));
+	if (!str)
+		return (0);
+	while (tmp < size)
+		str[tmp++] = '\0';
+	tmp = 0;
+	while (dig >= form)
+	{
+		str[tmp++] = getbasechar(dig % form);
+		dig /= form;
+	}
+	str[tmp] = getbasechar(dig);
+	reversstr(str, ft_strlen(str));
+	return (str);
 }

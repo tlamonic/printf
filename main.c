@@ -28,8 +28,8 @@ void	print(unsigned long long a)
 }
 int main()
 {
-	int a = 212;
-	int *b = &a;
-	printf("%-14p%%\n", b);
-	ft_printf("%-14p", b);
+	int a = 0;
+	//char *a = "hel";
+	printf("%10.0u%%\n", (unsigned)a);
+	ft_printf("%10.0u", (unsigned)a);
 }

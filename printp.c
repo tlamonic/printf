@@ -6,19 +6,19 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/19 21:11:02 by student          ###   ########.fr       */
+/*   Updated: 2020/07/20 14:08:01 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
+
 int			printp(void *ptr, int *format)
 {
 	char	*arr;
 	int		i;
 	int		len;
 
-	if (!(arr = sixty((unsigned long long)ptr)))
+	if (!(arr = ulltoabase((unsigned long long)ptr, 10)))
 		return (-1);
 	i = 0;
 	len = ft_strlen(arr);

@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:30:22 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/19 20:10:09 by student          ###   ########.fr       */
+/*   Updated: 2020/07/20 14:52:29 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		printdi(int i, int *format)
 		tmp = size;
 		size += format[2] - size;
 	}
-	if ((format[0] & 1 << 1) && !(format[0] & 1) && !format[2])
+	if ((format[0] & 1 << 1) && !(format[0] & 1) && format[2] == -1)
 		ptr = printzero;
 	else
 		ptr = printspaces;
@@ -35,7 +35,7 @@ int		printdi(int i, int *format)
 		ptr(format[1] - size);
 	if (tmp)
 		printzero(format[2] - tmp);
-	ft_putnbr(i);
+	ft_putnbr(i, format);
 	if (format[0] & 1 << 1 && format[1] > size)
 		ptr(format[1] - size);
 	return (0);
