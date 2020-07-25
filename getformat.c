@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:30 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/19 20:02:03 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 19:42:51 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,9 @@ int				*getformat(const char *s1, const char *s2, va_list *vlist)
 	res[0] = getflags(s1, s2);
 	res[1] = getwidth(s1, s2, vlist);
 	res[2] = getprescision(s1, s2, vlist);
+	if ((res[0] & 1) && (res[0] & 1 << 1))
+		res[0] &= 1 << 1;
+	if ((res[0] & 1) && res[2] > -1)
+		res[0] &= 1 << 1;
 	return (res);
 }

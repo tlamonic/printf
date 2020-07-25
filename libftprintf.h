@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:51 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/20 15:03:54 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/21 15:41:34 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-size_t 			g_cout;
+int				getsize(int n);
 void			printspaces(size_t count);
 void			printzero(size_t count);
 void			reversstr(char *str, size_t size);
 char			*ulltoabase(unsigned long long dig, int form);
 char			getbasechar(int c);
+size_t			g_cout;
 int				ft_printf(char const *s, ...);
 int				*getformat(const char *s1, const char *s2, va_list *vlist);
-int 			getsize(int n);
 int				parse_str(const char *s, va_list *vlist);
 int				print_param(const char *s1, const char *s2, va_list *vlist);
 int				printchar(int ch, int *format);

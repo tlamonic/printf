@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:30:37 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/19 21:04:14 by student          ###   ########.fr       */
+/*   Updated: 2020/07/21 09:21:46 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int		prints(int *st, int *format)
 	if (!format)
 		return (-1);
 	str = (char*)st;
-	len = ft_strlen(str);
 	if ((format[0] & 1 << 1) && !(format[0] & 1) && !format[2])
 		ptr = printzero;
 	else
 		ptr = printspaces;
 	if (!st)
 		str = "(null)";
+	len = ft_strlen(str);
 	if (format[2] >= 0 && len > format[2])
 		len = format[2];
 	if (!(format[0] & 1 << 1) && format[1] > len)

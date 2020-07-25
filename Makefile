@@ -6,11 +6,12 @@
 #    By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/15 12:36:39 by tlamonic          #+#    #+#              #
-#    Updated: 2020/07/20 13:40:34 by tlamonic         ###   ########.fr        #
+#    Updated: 2020/07/21 15:32:42 by tlamonic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAG = -Wall -Wextra -Werror
+
 RM = rm -f
 
 NAME = libftprintf.a

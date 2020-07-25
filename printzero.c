@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:02:37 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/15 14:04:54 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/25 17:06:29 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	printzero(size_t count)
 {
-	while (count-- != 0)
-		g_cout += write(1, "0", 1);
+	if (count > 0)
+		while (count-- != 0)
+			g_cout += write(1, "0", 1);
 }

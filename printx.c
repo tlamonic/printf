@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:23:24 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/20 15:40:01 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/21 09:52:36 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int				thx_norminette(char *arr, int *format, int len, int tmp)
 	tmp = 0;
 	len = ft_strlen(arr);
 	if (format[2] && len < format[2])
-	{
-		tmp = len;
-		len += format[2] - len;
-	}
+		len = format[2];
 	if (!(format[0] & 1 << 1) && (format[0] & 1) && format[2] == -1)
 		ptr = printzero;
 	else
@@ -31,7 +28,7 @@ int				thx_norminette(char *arr, int *format, int len, int tmp)
 		ptr(format[1] - len);
 	if (tmp)
 		printzero(format[2] - tmp);
-	g_cout += write(1, arr, len);
+	g_cout += write(1, arr, ft_strlen(arr));
 	if ((format[0] & 1 << 1) && format[1] > len)
 		ptr(format[1] - len);
 	free(arr);

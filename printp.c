@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 15:35:02 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/20 14:08:01 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/21 08:58:55 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			printp(void *ptr, int *format)
 	int		i;
 	int		len;
 
-	if (!(arr = ulltoabase((unsigned long long)ptr, 10)))
+	if (!(arr = ulltoabase((unsigned long long)ptr, 16)))
 		return (-1);
 	i = 0;
 	len = ft_strlen(arr);

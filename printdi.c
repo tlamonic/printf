@@ -6,13 +6,49 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:30:22 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/20 14:52:29 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/07/25 19:51:42 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		printdi(int i, int *format)
+static void		width(int *size, int *format, int *i)
+{
+	int tmp;
+
+	tmp = format[2] > *size ? format[2] : *size;
+	if (*i < 0)
+		tmp++;
+	if ((format[0] & 1) && format[1] > tmp)
+	{
+		if (*i < 0)
+		{
+			g_cout += write(1, "-", 1);
+			*i *= -1;
+			(*size)++;
+		}
+		printzero(format[1] - tmp);
+	}
+	else if (format[1] > tmp && !(format[0] & 1 << 1))
+		printspaces(format[1] - tmp);
+}
+
+static void		pres(int *i, int *format, int *size)
+{
+	if (*i < 0)
+	{
+		g_cout += write(1, "-", 1);
+		*i *= -1;
+		(*size)++;
+	}
+	if (format[2] > *size)
+	{
+		printzero(format[2] - getsize(*i));
+		*size += format[2] - getsize(*i);
+	}
+}
+
+int				printdi(int i, int *format)
 {
 	int		size;
 	int		tmp;
@@ -20,23 +56,11 @@ int		printdi(int i, int *format)
 
 	if (!format)
 		return (-1);
-	tmp = 0;
 	size = getsize(i);
-	if (size < format[2])
-	{
-		tmp = size;
-		size += format[2] - size;
-	}
-	if ((format[0] & 1 << 1) && !(format[0] & 1) && format[2] == -1)
-		ptr = printzero;
-	else
-		ptr = printspaces;
-	if (!(format[0] & 1 << 1) && format[1] > size)
-		ptr(format[1] - size);
-	if (tmp)
-		printzero(format[2] - tmp);
+	width(&size, format, &i);
+	pres(&i, format, &size);
 	ft_putnbr(i, format);
 	if (format[0] & 1 << 1 && format[1] > size)
-		ptr(format[1] - size);
+		printspaces(format[1] - size);
 	return (0);
 }
