@@ -1,5 +1,5 @@
 #include "libftprintf.h"
-
+#include <stdio.h>
 static char    *ft_strchr(char *str, char c)
 {
     int i;
@@ -142,6 +142,16 @@ static char     *ulltoabase(int i, int form)
     return (str);
 }
 
+void            strtoupper(char *str)
+{
+    while (*str)
+    {
+        if (*str >= 'a' && *str <= 'z')
+            *str -=32;
+        str++;
+    }
+}
+
 static int     printx(unsigned int i, int *format, char c)
 {
     char    *res;
@@ -159,12 +169,14 @@ static int     printx(unsigned int i, int *format, char c)
     }
     if (!(res = ulltoabase(i, 16)))
         return (-1);
+    if (c == 'X')
+        strtoupper(res);
     size = format[1] >= 0 ? format[1] : ft_strlen(res);
     while (format[0]-- > size)
         g_cout += write(1, " ", 1);
-    while (size-- > ft_strlen(res))
+    while (size-- > (int)ft_strlen(res))
         g_cout += write(1, "0", 1);
-    while (++j < ft_strlen(res))
+    while (++j < (int)ft_strlen(res))
         ft_putchar(res[j]);
     free(res);
     return (0);
@@ -180,7 +192,7 @@ static int     prints(int *arr, int *format)
         return (-1);
     str = (char*)arr;
     i = -1;
-    size = format[1] >= 0 ? format[1] : ft_strlen(arr);
+    size = format[1] >= 0 ? format[1] : ft_strlen(str);
     while (format[0]-- > size)
         g_cout += write(1, " ", 1);
     while (++i < size)
@@ -352,7 +364,7 @@ int     ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("count of symbols is %d\n\n\n\n\n", ft_printf("Hello World! %10.6d\n\n\n", 123));
-    printf("count of symbols is %d\n\n\n\n\n", printf("Hello World! %10.6d\n\n\n", 123));
+    ft_printf("count of symbols is %d\n\n\n\n\n", ft_printf("Hello World! %10.6s\n\n\n", "HelloWorld"));
+    printf("count of symbols is %d\n\n\n\n\n", printf("Hello World! %10.6s\n\n\n", "HelloWorld"));
     return 0;
 }
