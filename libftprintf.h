@@ -6,7 +6,7 @@
 /*   By: tlamonic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:29:51 by tlamonic          #+#    #+#             */
-/*   Updated: 2020/07/21 15:41:34 by tlamonic         ###   ########.fr       */
+/*   Updated: 2020/08/06 16:09:17 by tlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			reversstr(char *str, size_t size);
 char			*ulltoabase(unsigned long long dig, int form);
 char			getbasechar(int c);
 size_t			g_cout;
-int				ft_printf(char const *s, ...);
+int				ft_printf(char *s, ...);
 int				*getformat(const char *s1, const char *s2, va_list *vlist);
 int				parse_str(const char *s, va_list *vlist);
 int				print_param(const char *s1, const char *s2, va_list *vlist);
